@@ -3,16 +3,16 @@ A terraria-like game.
 ## Target: 
 Become the right-hand of one of four gods of a player's choice.
 ## Gods:
-* Bellum (God of War) - 
+* Bellum (God of War)  
   >- increases favor from attacking, 
   >- decreases favor from dying
-* Praesidium (God of Protection) - 
+* Praesidium (God of Protection)  
   >- increases favor from taking damage, 
   >- decreases favor from dying
-* Eventum (God of Fortune) - 
+* Eventum (God of Fortune)  
   >- increases favor from mining, dying, 
   >- decreases favor from sleeping
-* Consilium (God of Wisdom) - 
+* Consilium (God of Wisdom)  
   >- increases favor from crafting, sleeping, 
   >- decreases favor from failed crafting skilltests, taking damage
 
