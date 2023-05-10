@@ -3,24 +3,24 @@
 * The game will consist of tiles (8x8 pixels)
 * The player model will have the height of 2 tiles (10 - 14 pixels)
 ## Required Textures (1x1 tiles):
-* [ ] Grass block (~4 different patterns)
-* [ ] Dirt block (~4 different patterns)
-* [ ] Wood log block (~3 different patterns)
-* [ ] Leaves block (~3 different patterns)
-* [ ] Stone block (~4 different patterns + ~2 patterns of stone+dirt block connection)
-* [ ] Wood plank block
-* [ ] Stick
-* [ ] Lader
-* [ ] Sappling
-* [ ] Apple
-* [ ] Iron ore block (~2 different patterns)
+* [x] Grass block (~4 different patterns)
+* [x] Dirt block (~4 different patterns)
+* [x] Wood log block (~3 different patterns)
+* [x] Leaves block (~3 different patterns)
+* [x] Stone block (~4 different patterns + ~2 patterns of stone+dirt block connection)
+* [x] Wood plank block
+* [x] Stick
+* [x] Lader
+* [x] Sappling
+* [x] Apple
+* [x] Iron ore block (~2 different patterns)
 * [ ] Iron ingot
 * [ ] Armor (chesptlate) \[iron-like texture\]
-* [ ] Sword \[iron-like texture\]
-* [ ] Bow
+* [x] Sword \[iron-like texture\]
+* [x] Bow
 * [ ] Axe \[iron-like texture\]
 * [ ] Shovel \[iron-like texture\]
-* [ ] Cursor
+* [x] Cursor
 ## (1x2 tiles)
 * [ ] Player model (standing + walking)
 * [ ] Monster model (standing + walking)
