@@ -19,12 +19,24 @@ public class WorldGeneration : MonoBehaviour
     public float caveNoiseScale = 0.08f;
     public Texture2D worldNoise;
 
+    public int dirtLayer = 4;
+    public int grassLayer = 1;
+
     private void Start()
     {
         SetTextures();
         GenerateWorldSeed();
         GenerateWorldNoise();
         GenerateWorld();
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            PlaceTile(stoneTile, Mathf.RoundToInt(Input.mousePosition.x), Mathf.RoundToInt(Input.mousePosition.y));
+        }
     }
 
     public void SetTextures()
@@ -65,13 +77,18 @@ public class WorldGeneration : MonoBehaviour
             {
                 if (worldNoise.GetPixel(x + worldWidth / 2, y - worldHeight).r > 0.2f)
                 {    
-                    GameObject newTile = new GameObject(name = "Tile");
-                    newTile.transform.parent = this.transform;
-                    newTile.AddComponent<SpriteRenderer>();
-                    newTile.GetComponent<SpriteRenderer>().sprite = stoneTile;
-                    newTile.transform.position = new Vector2(x, y);
+                    PlaceTile(stoneTile, x, y);
                 }
             }
         }
+    }
+
+    public void PlaceTile(Sprite tile, int x, int y)
+    {
+        GameObject newTile = new GameObject(name = "Tile");
+        newTile.transform.parent = this.transform;
+        newTile.AddComponent<SpriteRenderer>();
+        newTile.GetComponent<SpriteRenderer>().sprite = tile;
+        newTile.transform.position = new Vector2(x, y);
     }
 }

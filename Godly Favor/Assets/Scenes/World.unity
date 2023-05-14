@@ -169,12 +169,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldWidth: 128
   worldHeight: 64
-  grassTile: {fileID: 0}
-  dirtTile: {fileID: 0}
-  stoneTile: {fileID: 0}
+  grassTile: {fileID: 21300000, guid: db3e07a081fd8134dad560abefee7263, type: 3}
+  dirtTile: {fileID: 21300000, guid: b5ad5d8c2cf958b4cbce3c40236b3b77, type: 3}
+  stoneTile: {fileID: 21300000, guid: 496b64421d89dff4ea0c47cd9cdf60f5, type: 3}
   heightMultiplier: 24
   heightAddition: 24
   worldSeed: 0
   worldNoiseScale: 0.04
   caveNoiseScale: 0.08
   worldNoise: {fileID: 0}
+  dirtLayer: 4
+  grassLayer: 1
