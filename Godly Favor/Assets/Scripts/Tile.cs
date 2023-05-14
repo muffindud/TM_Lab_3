@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tile
 {
     public Vector2 position;
     public Sprite sprite;
+    public int hardness;
+    public string tool;
+    public bool handBreakable;
 
     public Tile(Vector2 position, Sprite sprite)
     {
@@ -13,6 +17,45 @@ public class Tile
         position.y = Mathf.RoundToInt(position.y);
         this.position = position;
         this.sprite = sprite;
+
+        switch (sprite.name)
+        {
+            case "grass_block":
+                hardness = 1;
+                tool = "shovel";
+                handBreakable = true;
+                break;
+            case "dirt_block":
+                hardness = 1;
+                tool = "shovel";
+                handBreakable = true;
+                break;
+            case "log_block":
+                hardness = 2;
+                tool = "axe";
+                handBreakable = true;
+                break;
+            case "leaf_block":
+                hardness = 1;
+                tool = "axe";
+                handBreakable = true;
+                break;
+            case "stone_block":
+                hardness = 3;
+                tool = "pickaxe";
+                handBreakable = false;
+                break;
+            case "iron_ore_block":
+                hardness = 4;
+                tool = "pickaxe";
+                handBreakable = false;
+                break;
+            default:
+                hardness = 1;
+                tool = "pickaxe";
+                handBreakable = true;
+                break;
+        }
 
         PlaceTile();
     }

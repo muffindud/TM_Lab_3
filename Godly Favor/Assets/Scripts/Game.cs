@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    public int worldWidth = 128;
-    public int worldHeight = 64;
-
     public Sprite grassTile;
     public Sprite dirtTile;
     public Sprite stoneTile;
@@ -14,20 +11,24 @@ public class Game : MonoBehaviour
     public Sprite leafTile;
     public Sprite ironOreTile;
 
-    public int heightMultiplier = 24;
-    public int heightAddition = 24;
+    private const int worldWidth = 128; 
+    private const int worldHeight = 96;
 
-    public int worldSeed;
-    public float worldNoiseScale = 0.04f;
-    public float caveNoiseScale = 0.08f;
-    public Texture2D worldNoise;
 
-    public int dirtLayer = 4;
-    public int grassLayer = 1;
-    public Tile[,] tiles = new Tile[128, 64];
+    private int heightMultiplier = 24;
+    private int heightAddition = 24;
+
+    private int worldSeed;
+    private const float worldNoiseScale = 0.04f;
+    private const float caveNoiseScale = 0.08f;
+    private Texture2D worldNoise;
+
+    private const int dirtLayer = 4;
+    private const int grassLayer = 1;
+    public Tile[,] tiles = new Tile[worldWidth, worldHeight];
     
-    public float treeProbability = 0.1f;
-    public float ironOreProbability = 0.05f;
+    private const float treeProbability = 0.1f;
+    private const float ironOreProbability = 0.05f;
 
     // Internal use
     private void Start()
