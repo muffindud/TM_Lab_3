@@ -22,8 +22,8 @@
 * [x] Shovel \[iron-like texture\]
 * [x] Cursor
 ## (1x2 tiles)
-* [ ] Player model (standing + walking)
-* [ ] Monster model (standing + walking)
+* [x] Player model (standing + walking)
+* [x] Monster model (standing + walking)
 ## (2x2 tiles)
 * [x] Bellum statue + colorful apearance (War God)
 * [x] Praesidium statue + colorful apearance (Prodtection God)
