@@ -15,7 +15,7 @@
 * [x] Apple
 * [x] Iron ore block (~2 different patterns)
 * [ ] Iron ingot
-* [ ] Armor (chesptlate) \[iron-like texture\]
+* [x] Armor (chesptlate) \[iron-like texture\]
 * [x] Sword \[iron-like texture\]
 * [x] Bow
 * [ ] Axe \[iron-like texture\]
@@ -29,8 +29,8 @@
 * [ ] Praesidium statue + colorful apearance (Prodtection God)
 * [ ] Eventum statue + colorful apearance (Fortune God)
 * [ ] Consilium statue + colorful apearance (Wisdom God)
-* [ ] Sun
-* [ ] Moon (new moon, half moon, full moon) 
+* [x] Sun
+* [x] Moon (new moon, half moon, full moon) 
 ## UI (256x144 pixels)
 * [ ] Day skybox
 * [ ] Night skybox
