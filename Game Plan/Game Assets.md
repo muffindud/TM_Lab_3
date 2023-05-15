@@ -14,21 +14,21 @@
 * [x] Sappling
 * [x] Apple
 * [x] Iron ore block (~2 different patterns)
-* [ ] Iron ingot
+* [x] Iron ingot
 * [x] Armor (chesptlate) \[iron-like texture\]
 * [x] Sword \[iron-like texture\]
 * [x] Bow
-* [ ] Axe \[iron-like texture\]
-* [ ] Shovel \[iron-like texture\]
+* [x] Axe \[iron-like texture\]
+* [x] Shovel \[iron-like texture\]
 * [x] Cursor
 ## (1x2 tiles)
 * [ ] Player model (standing + walking)
 * [ ] Monster model (standing + walking)
 ## (2x2 tiles)
-* [ ] Bellum statue + colorful apearance (War God)
-* [ ] Praesidium statue + colorful apearance (Prodtection God)
-* [ ] Eventum statue + colorful apearance (Fortune God)
-* [ ] Consilium statue + colorful apearance (Wisdom God)
+* [x] Bellum statue + colorful apearance (War God)
+* [x] Praesidium statue + colorful apearance (Prodtection God)
+* [x] Eventum statue + colorful apearance (Fortune God)
+* [x] Consilium statue + colorful apearance (Wisdom God)
 * [x] Sun
 * [x] Moon (new moon, half moon, full moon) 
 ## UI (256x144 pixels)
