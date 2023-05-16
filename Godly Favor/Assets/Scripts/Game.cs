@@ -25,12 +25,14 @@ public class Game : MonoBehaviour
     public Tile[,] tiles = new Tile[Globals.worldWidth, Globals.worldHeight];
     public Tile[] worldBorder = new Tile[2 * Globals.worldWidth + 2 * Globals.worldHeight + 4];
     
+    public PlayerController player;
+
     private const float treeProbability = 0.1f;
     private const float ironOreProbability = 0.05f;
 
     // Internal use
     private void Start()
-    {
+    {   
         GenerateWorldSeed();
         GenerateWorldNoise();
         GenerateWorld();
@@ -41,6 +43,7 @@ public class Game : MonoBehaviour
     {
         PlaceTileOnClick(stoneTile);
         RemoveTileOnClick();
+        // OnHoverTint();
     }
 
     // External use
@@ -163,7 +166,9 @@ public class Game : MonoBehaviour
             Vector2 mousePos = new Vector2();
             mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
             mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
-            if (mousePos.x >= 0 && mousePos.x < Globals.worldWidth && mousePos.y >= 0 && mousePos.y < Globals.worldHeight)
+            float distance = Vector2.Distance(mousePos, player.transform.position);
+
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y)] != null)
                 {
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y)].RemoveTile();
@@ -181,11 +186,25 @@ public class Game : MonoBehaviour
             Vector2 mousePos = new Vector2();
             mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
             mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
-            if (mousePos.x >= 0 && mousePos.x < Globals.worldWidth && mousePos.y >= 0 && mousePos.y < Globals.worldHeight)
+            float distance = Vector2.Distance(mousePos, player.transform.position);
+
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y)] == null)
-                {
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y)] = new Tile(mousePos, tile);
-                }
         }
     }
+
+    // TODO: Add a tint on mouse hover
+    // public void OnHoverTint()
+    // {
+    //     Vector2 mousePos = new Vector2();
+    //     mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
+    //     mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
+    //     float distance = Vector2.Distance(mousePos, player.transform.position);
+
+    //     if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
+    //     {
+            
+    //     }
+    // }
 }

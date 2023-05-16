@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 7.5f;
     public float jumpForce = 13f;
     public int animationSpeed = 3;
+    public float interactionDistance = 4f;
 
     public bool isGrounded;
     public bool isMoving;
