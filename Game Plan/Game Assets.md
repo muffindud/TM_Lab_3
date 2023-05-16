@@ -1,7 +1,7 @@
 ## Graphics:
 * The resolution of the screen will be 32x18 tiles (256x144 pixels)
 * The game will consist of tiles (8x8 pixels)
-* The player model will have the height of 2 tiles (10 - 14 pixels)
+
 ## Required Textures (1x1 tiles):
 * [x] Grass block (~4 different patterns)
 * [x] Dirt block (~4 different patterns)
@@ -21,14 +21,16 @@
 * [x] Axe \[iron-like texture\]
 * [x] Shovel \[iron-like texture\]
 * [x] Cursor
-## (1x2 tiles)
+## (2x3 tiles)
 * [x] Player model (standing + walking)
+## (3x3 tiles)
 * [x] Monster model (standing + walking)
-## (2x2 tiles)
+## (3x4 tiles)
 * [x] Bellum statue + colorful apearance (War God)
 * [x] Praesidium statue + colorful apearance (Prodtection God)
 * [x] Eventum statue + colorful apearance (Fortune God)
 * [x] Consilium statue + colorful apearance (Wisdom God)
+## (2x2 tiles)
 * [x] Sun
 * [x] Moon (new moon, half moon, full moon) 
 ## UI (256x144 pixels)
