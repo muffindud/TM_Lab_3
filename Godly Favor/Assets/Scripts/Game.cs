@@ -11,9 +11,8 @@ public class Game : MonoBehaviour
     public Sprite leafTile;
     public Sprite ironOreTile;
 
-    private const int worldWidth = 128; 
+    private const int worldWidth = 256; 
     private const int worldHeight = 96;
-
 
     private int heightMultiplier = 24;
     private int heightAddition = 24;
@@ -33,7 +32,6 @@ public class Game : MonoBehaviour
     // Internal use
     private void Start()
     {
-        
         GenerateWorldSeed();
         GenerateWorldNoise();
         GenerateWorld();
