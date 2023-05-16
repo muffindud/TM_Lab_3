@@ -34,6 +34,6 @@
 * [x] Sun
 * [x] Moon (new moon, half moon, full moon) 
 ## UI (256x144 pixels)
-* [ ] Day skybox
-* [ ] Night skybox
+* [x] Day skybox
+* [x] Night skybox
 * [ ] OPTIONAL: Sun-rise + Sun-set 
