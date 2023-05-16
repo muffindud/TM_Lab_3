@@ -10,6 +10,7 @@ public class Tile
     public int hardness;
     public string tool;
     public bool handBreakable;
+    public bool brakable = true;
 
     public Tile(Vector2 position, Sprite sprite)
     {
@@ -50,6 +51,11 @@ public class Tile
                 tool = "pickaxe";
                 handBreakable = false;
                 break;
+            case "bedrock_block":
+                hardness = 999;
+                tool = "pickaxe";
+                brakable = false;
+                break;
             default:
                 hardness = 1;
                 tool = "pickaxe";
@@ -76,6 +82,7 @@ public class Tile
     public void RemoveTile()
     {
         GameObject tile = GameObject.Find(sprite.name + " " + position.x + " " + position.y);
-        GameObject.Destroy(tile);
+        if (tile.name != "bedrock_block " + position.x + " " + position.y)
+            GameObject.Destroy(tile);
     }
 }

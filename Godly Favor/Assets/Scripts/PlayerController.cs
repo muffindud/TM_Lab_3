@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public Sprite idleSprite;
     public Sprite[] walkSprites = new Sprite[2];
 
+    public Vector2Int mousePos;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     
