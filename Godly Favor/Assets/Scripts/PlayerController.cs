@@ -18,18 +18,18 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    void Update()
     {
         ChangeSprite();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // float horizontal = Input.GetAxis("Horizontal");
         float horizontal = Input.GetAxis("Horizontal");
@@ -54,15 +54,6 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontal * moveSpeed, rb.velocity.y);
 
-        if (horizontal > 0)
-        {
-            sr.flipX = false;
-        }
-        else if (horizontal < 0)
-        {
-            sr.flipX = true;
-        }
-
         if ((veritcal > 0.1f || jump > 0.1f) && isGrounded == true)
         {
             movement.y = jumpForce;
@@ -70,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = movement;
         
+        sr.flipX = horizontal < 0;
         isMoving = movement.x != 0;
     }
 
@@ -86,9 +78,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Movement()
-    {
-
-    }
-    
 }

@@ -92,38 +92,28 @@ public class Game : MonoBehaviour
         return Mathf.RoundToInt(f);
     }
 
-    // public void PlaceTile(Sprite tile, float x, float y)
-    // {
-    //     GameObject newTile = new GameObject(name = "Tile");
-    //     newTile.transform.parent = this.transform;
-    //     newTile.AddComponent<SpriteRenderer>();
-    //     newTile.GetComponent<SpriteRenderer>().sprite = tile;
-    //     newTile.name = tile.name;
-    //     newTile.transform.position = new Vector2(Mathf.RoundToInt(x) + 0.5f, Mathf.RoundToInt(y) + 0.5f);
-    // }
-
     public void PlaceTree(float x, float y)
     {
-        // PlaceTile(logTile, x, y);
-        // PlaceTile(logTile, x, y + 1);
-        // PlaceTile(logTile, x, y + 2);
-        // PlaceTile(leafTile, x - 1, y + 3);
-        // PlaceTile(leafTile, x, y + 3);
-        // PlaceTile(leafTile, x + 1, y + 3);
-        // PlaceTile(leafTile, x - 1, y + 4);
-        // PlaceTile(leafTile, x, y + 4);
-        // PlaceTile(leafTile, x + 1, y + 4);
-        // PlaceTile(leafTile, x, y + 5);
-        tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), logTile);
-        tiles[FtoI(x), FtoI(y + 1)] = new Tile(new Vector2(x, y + 1), logTile);
-        tiles[FtoI(x), FtoI(y + 2)] = new Tile(new Vector2(x, y + 2), logTile);
-        tiles[FtoI(x - 1), FtoI(y + 3)] = new Tile(new Vector2(x - 1, y + 3), leafTile);
-        tiles[FtoI(x), FtoI(y + 3)] = new Tile(new Vector2(x, y + 3), leafTile);
-        tiles[FtoI(x + 1), FtoI(y + 3)] = new Tile(new Vector2(x + 1, y + 3), leafTile);
-        tiles[FtoI(x - 1), FtoI(y + 4)] = new Tile(new Vector2(x - 1, y + 4), leafTile);
-        tiles[FtoI(x), FtoI(y + 4)] = new Tile(new Vector2(x, y + 4), leafTile);
-        tiles[FtoI(x + 1), FtoI(y + 4)] = new Tile(new Vector2(x + 1, y + 4), leafTile);
-        tiles[FtoI(x), FtoI(y + 5)] = new Tile(new Vector2(x, y + 5), leafTile);
+        if (tiles[FtoI(x), FtoI(y)] == null)
+            tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), logTile);
+        if (tiles[FtoI(x), FtoI(y + 1)] == null)
+            tiles[FtoI(x), FtoI(y + 1)] = new Tile(new Vector2(x, y + 1), logTile);
+        if (tiles[FtoI(x), FtoI(y + 2)] == null)
+            tiles[FtoI(x), FtoI(y + 2)] = new Tile(new Vector2(x, y + 2), logTile);
+        if (tiles[FtoI(x - 1), FtoI(y + 3)] == null)
+            tiles[FtoI(x - 1), FtoI(y + 3)] = new Tile(new Vector2(x - 1, y + 3), leafTile);
+        if (tiles[FtoI(x), FtoI(y + 3)] == null)
+            tiles[FtoI(x), FtoI(y + 3)] = new Tile(new Vector2(x, y + 3), leafTile);
+        if (tiles[FtoI(x + 1), FtoI(y + 3)] == null)
+            tiles[FtoI(x + 1), FtoI(y + 3)] = new Tile(new Vector2(x + 1, y + 3), leafTile);
+        if (tiles[FtoI(x - 1), FtoI(y + 4)] == null)
+            tiles[FtoI(x - 1), FtoI(y + 4)] = new Tile(new Vector2(x - 1, y + 4), leafTile);
+        if (tiles[FtoI(x), FtoI(y + 4)] == null)
+            tiles[FtoI(x), FtoI(y + 4)] = new Tile(new Vector2(x, y + 4), leafTile);
+        if (tiles[FtoI(x + 1), FtoI(y + 4)] == null)
+            tiles[FtoI(x + 1), FtoI(y + 4)] = new Tile(new Vector2(x + 1, y + 4), leafTile);
+        if (tiles[FtoI(x), FtoI(y + 5)] == null)
+            tiles[FtoI(x), FtoI(y + 5)] = new Tile(new Vector2(x, y + 5), leafTile);
     } 
 
     public void GenerateWorld()

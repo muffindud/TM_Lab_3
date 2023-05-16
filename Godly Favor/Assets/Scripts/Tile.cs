@@ -71,7 +71,6 @@ public class Tile
         newTile.tag = "Ground";
         newTile.AddComponent<BoxCollider2D>();
         // newTile.GetComponent<BoxCollider2D>().isTrigger = true;
-
     }
 
     public void RemoveTile()
