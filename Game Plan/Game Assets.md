@@ -21,9 +21,9 @@
 * [x] Axe \[iron-like texture\]
 * [x] Shovel \[iron-like texture\]
 * [x] Cursor
-* [ ] Pickaxe \[iron-like texture\]
-* [ ] Pickaxe \[stone-like texture\]
-* [ ] Pickaxe \[wood-like texture\]
+* [x] Pickaxe \[iron-like texture\]
+* [x] Pickaxe \[stone-like texture\]
+* [x] Pickaxe \[wood-like texture\]
 ## (2x3 tiles)
 * [x] Player model (standing + walking)
 ## (3x3 tiles)
