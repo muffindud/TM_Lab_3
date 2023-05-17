@@ -225,8 +225,9 @@ public class Game : MonoBehaviour
             mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
             mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
             float distance = Vector2.Distance(mousePos, player.transform.position);
+            bool isBackground = tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] == null;
 
-            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] != null)
                 {
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile();
@@ -261,8 +262,9 @@ public class Game : MonoBehaviour
             mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
             mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
             float distance = Vector2.Distance(mousePos, player.transform.position);
+            bool isBackground = tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] == null;
 
-            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] == null)
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, tile, true);
         }
