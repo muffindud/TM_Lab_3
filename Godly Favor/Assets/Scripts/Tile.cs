@@ -78,7 +78,8 @@ public class Tile
         {
             newTile.name = sprite.name + " " + position.x + " " + position.y + " 1";
             // set the tint of the background tiles
-            newTile.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            newTile.GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.6f, 0.6f, 1f);
+            newTile.GetComponent<SpriteRenderer>().sortingOrder = -1;
         }
         else if (!background)
         {

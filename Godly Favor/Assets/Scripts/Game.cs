@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     private const float worldNoiseScale = 0.04f;
     private const float caveNoiseScale = 0.08f;
     private Texture2D worldNoise;
+    private Texture2D backgroundNoise;
 
     private const int dirtLayer = 4;
     private const int grassLayer = 1;
@@ -36,6 +37,7 @@ public class Game : MonoBehaviour
         GenerateWorldSeed();
         GenerateWorldNoise();
         GenerateWorld();
+        GenerateBackgroundWorld();
         GenerateWorldBorder();
     }
 
@@ -55,6 +57,7 @@ public class Game : MonoBehaviour
     public void GenerateWorldNoise()
     {
         worldNoise = new Texture2D(Globals.worldWidth, Globals.worldHeight);
+        backgroundNoise = new Texture2D(Globals.worldWidth, Globals.worldHeight);
 
         for (int x = 0; x < worldNoise.width; x++)
         {
@@ -62,10 +65,13 @@ public class Game : MonoBehaviour
             {
                 float v = Mathf.PerlinNoise((x + worldSeed) * caveNoiseScale, (y + worldSeed) * caveNoiseScale);
                 worldNoise.SetPixel(x, y, new Color(v, v, v));
+                float v2 = Mathf.PerlinNoise((x + worldSeed), (y + worldSeed));
+                backgroundNoise.SetPixel(x, y, new Color(v2, v2, v2));
             }
         }
 
         worldNoise.Apply();
+        backgroundNoise.Apply();
     }
 
     public int FtoI(float f)
@@ -135,8 +141,40 @@ public class Game : MonoBehaviour
             }
         }
     }
+    
+    public void GenerateBackgroundWorld()
+    {
+        for (int x = 0; x < Globals.worldWidth; x++)
+        {
+            float height = Mathf.PerlinNoise((x + worldSeed) * worldNoiseScale, worldSeed * worldNoiseScale) * heightMultiplier + heightAddition;
 
-
+            for (int y = 0; y < height; y++)
+            {
+                if (backgroundNoise.GetPixel(x, y - Globals.worldHeight).r > 0.2f)
+                {
+                    if (y < height - dirtLayer - grassLayer)
+                    {
+                        if (Random.Range(0f, 1f) < ironOreProbability)
+                        {
+                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), ironOreTile, true);
+                        }
+                        else
+                        {    
+                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), stoneTile, true);
+                        }
+                    }
+                    else if (y < height - grassLayer)
+                    {
+                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), dirtTile, true);
+                    }
+                    else
+                    {
+                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), grassTile, true);
+                    }
+                }
+            }
+        }
+    }
 
     public void GenerateWorldBorder()
     {
