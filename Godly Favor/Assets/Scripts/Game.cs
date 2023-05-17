@@ -12,7 +12,9 @@ public class Game : MonoBehaviour
     public Sprite ironOreTile;
     public Sprite bedrockTile;
 
-    public Sprite pickaxeTool;
+    public Sprite pickaxeToolIron;
+    public Sprite pickaxeToolStone;
+    public Sprite pickaxeToolWood;
     public Sprite axeTool;
     public Sprite shovelTool;
     public Sprite swordTool;
@@ -30,7 +32,7 @@ public class Game : MonoBehaviour
     private const int grassLayer = 1;
     public Tile[,,] tiles = new Tile[Globals.worldWidth, Globals.worldHeight, 2];
     public Tile[] worldBorder = new Tile[2 * Globals.worldWidth + 2 * Globals.worldHeight + 4];
-    public Tool[] tools = new Tool[5];
+    public Tool[] tools = new Tool[7];
 
     public PlayerController player;
     public InventoryManager inventoryManager;
@@ -67,10 +69,12 @@ public class Game : MonoBehaviour
     public void InstantiateTools()
     {
         tools[0] = new Tool("hand", null, 1, 1);
-        tools[1] = new Tool("pickaxe", pickaxeTool, 2, 3);
-        tools[2] = new Tool("axe", axeTool, 4, 3);
-        tools[3] = new Tool("shovel", shovelTool, 2, 4);
-        tools[4] = new Tool("sword", swordTool, 6, 1);
+        tools[1] = new Tool("pickaxe", pickaxeToolIron, 3, 5);
+        tools[2] = new Tool("pickaxe", pickaxeToolStone, 2, 3);
+        tools[3] = new Tool("pickaxe", pickaxeToolWood, 2, 2);
+        tools[4] = new Tool("axe", axeTool, 4, 3);
+        tools[5] = new Tool("shovel", shovelTool, 2, 4);
+        tools[6] = new Tool("sword", swordTool, 6, 1);
     }
 
     public void GenerateWorldNoise()
