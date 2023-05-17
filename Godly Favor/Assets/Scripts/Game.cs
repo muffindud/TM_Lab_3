@@ -22,7 +22,7 @@ public class Game : MonoBehaviour
 
     private const int dirtLayer = 4;
     private const int grassLayer = 1;
-    public Tile[,] tiles = new Tile[Globals.worldWidth, Globals.worldHeight];
+    public Tile[,,] tiles = new Tile[Globals.worldWidth, Globals.worldHeight, 2];
     public Tile[] worldBorder = new Tile[2 * Globals.worldWidth + 2 * Globals.worldHeight + 4];
     
     public PlayerController player;
@@ -75,26 +75,26 @@ public class Game : MonoBehaviour
 
     public void PlaceTree(float x, float y)
     {
-        if (tiles[FtoI(x), FtoI(y)] == null)
-            tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), logTile);
-        if (tiles[FtoI(x), FtoI(y + 1)] == null)
-            tiles[FtoI(x), FtoI(y + 1)] = new Tile(new Vector2(x, y + 1), logTile);
-        if (tiles[FtoI(x), FtoI(y + 2)] == null)
-            tiles[FtoI(x), FtoI(y + 2)] = new Tile(new Vector2(x, y + 2), logTile);
-        if (tiles[FtoI(x - 1), FtoI(y + 3)] == null)
-            tiles[FtoI(x - 1), FtoI(y + 3)] = new Tile(new Vector2(x - 1, y + 3), leafTile);
-        if (tiles[FtoI(x), FtoI(y + 3)] == null)
-            tiles[FtoI(x), FtoI(y + 3)] = new Tile(new Vector2(x, y + 3), leafTile);
-        if (tiles[FtoI(x + 1), FtoI(y + 3)] == null)
-            tiles[FtoI(x + 1), FtoI(y + 3)] = new Tile(new Vector2(x + 1, y + 3), leafTile);
-        if (tiles[FtoI(x - 1), FtoI(y + 4)] == null)
-            tiles[FtoI(x - 1), FtoI(y + 4)] = new Tile(new Vector2(x - 1, y + 4), leafTile);
-        if (tiles[FtoI(x), FtoI(y + 4)] == null)
-            tiles[FtoI(x), FtoI(y + 4)] = new Tile(new Vector2(x, y + 4), leafTile);
-        if (tiles[FtoI(x + 1), FtoI(y + 4)] == null)
-            tiles[FtoI(x + 1), FtoI(y + 4)] = new Tile(new Vector2(x + 1, y + 4), leafTile);
-        if (tiles[FtoI(x), FtoI(y + 5)] == null)
-            tiles[FtoI(x), FtoI(y + 5)] = new Tile(new Vector2(x, y + 5), leafTile);
+        if (tiles[FtoI(x), FtoI(y), 1] == null)
+            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), logTile, true);
+        if (tiles[FtoI(x), FtoI(y + 1), 1] == null)
+            tiles[FtoI(x), FtoI(y + 1), 1] = new Tile(new Vector2(x, y + 1), logTile, true);
+        if (tiles[FtoI(x), FtoI(y + 2), 1] == null)
+            tiles[FtoI(x), FtoI(y + 2), 1] = new Tile(new Vector2(x, y + 2), logTile, true);
+        if (tiles[FtoI(x - 1), FtoI(y + 3), 1] == null)
+            tiles[FtoI(x - 1), FtoI(y + 3), 1] = new Tile(new Vector2(x - 1, y + 3), leafTile, true);
+        if (tiles[FtoI(x), FtoI(y + 3), 1] == null)
+            tiles[FtoI(x), FtoI(y + 3), 1] = new Tile(new Vector2(x, y + 3), leafTile, true);
+        if (tiles[FtoI(x + 1), FtoI(y + 3), 1] == null)
+            tiles[FtoI(x + 1), FtoI(y + 3), 1] = new Tile(new Vector2(x + 1, y + 3), leafTile, true);
+        if (tiles[FtoI(x - 1), FtoI(y + 4), 1] == null)
+            tiles[FtoI(x - 1), FtoI(y + 4), 1] = new Tile(new Vector2(x - 1, y + 4), leafTile, true);
+        if (tiles[FtoI(x), FtoI(y + 4), 1] == null)
+            tiles[FtoI(x), FtoI(y + 4), 1] = new Tile(new Vector2(x, y + 4), leafTile, true);
+        if (tiles[FtoI(x + 1), FtoI(y + 4), 1] == null)
+            tiles[FtoI(x + 1), FtoI(y + 4), 1] = new Tile(new Vector2(x + 1, y + 4), leafTile, true);
+        if (tiles[FtoI(x), FtoI(y + 5), 1] == null)
+            tiles[FtoI(x), FtoI(y + 5), 1] = new Tile(new Vector2(x, y + 5), leafTile, true);
     } 
 
     public void GenerateWorld()
@@ -111,22 +111,22 @@ public class Game : MonoBehaviour
                     {
                         if (Random.Range(0f, 1f) < ironOreProbability)
                         {
-                            tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), ironOreTile);
+                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), ironOreTile);
                         }
                         else
                         {    
-                            tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), stoneTile);
+                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), stoneTile);
                         }
                     }
                     else if (y < height - grassLayer)
                     {
-                        tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), dirtTile);
+                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), dirtTile);
                     }
                     else
                     {
-                        tiles[FtoI(x), FtoI(y)] = new Tile(new Vector2(x, y), grassTile);
+                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), grassTile);
 
-                        if (Random.Range(0f, 1f) < treeProbability && x > 1 && x < Globals.worldWidth - 1 && tiles[x, y] != null)
+                        if (Random.Range(0f, 1f) < treeProbability && x > 1 && x < Globals.worldWidth - 1 && tiles[x, y, 0] != null)
                         {
                             PlaceTree(x, y + 1);
                         }
@@ -135,6 +135,8 @@ public class Game : MonoBehaviour
             }
         }
     }
+
+
 
     public void GenerateWorldBorder()
     {
@@ -160,7 +162,10 @@ public class Game : MonoBehaviour
 
     public void RemoveTileOnClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        // If left shift is held, remove background tile
+        bool leftShift = Input.GetKey(KeyCode.LeftShift); 
+
+        if (Input.GetMouseButtonDown(0) && !leftShift)
         {
             // Remove the tile if there is one there
             Vector2 mousePos = new Vector2();
@@ -169,17 +174,35 @@ public class Game : MonoBehaviour
             float distance = Vector2.Distance(mousePos, player.transform.position);
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
-                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y)] != null)
+                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] != null)
                 {
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y)].RemoveTile();
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y)] = null;
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile();
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = null;
+                }
+        }
+        else if(Input.GetMouseButtonDown(0) && leftShift)
+        {
+            // Remove the tile if there is one there
+            Vector2 mousePos = new Vector2();
+            mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
+            mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
+            float distance = Vector2.Distance(mousePos, player.transform.position);
+
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
+                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] != null)
+                {
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile();
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = null;
                 }
         }
     }
 
     public void PlaceTileOnClick(Sprite tile)
     {
-        if (Input.GetMouseButtonDown(1))
+        // If left shift is held, place background tile
+        bool leftShift = Input.GetKey(KeyCode.LeftShift); 
+
+        if (Input.GetMouseButtonDown(1) && !leftShift)
         {
             // PlaceTile(stoneTile, Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f);
             // Place a tile if there is not already a tile there
@@ -189,8 +212,21 @@ public class Game : MonoBehaviour
             float distance = Vector2.Distance(mousePos, player.transform.position);
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
-                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y)] == null)
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y)] = new Tile(mousePos, tile);
+                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] == null)
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = new Tile(mousePos, tile);
+        }
+        else if (Input.GetMouseButtonDown(1) && leftShift)
+        {
+            // PlaceTile(stoneTile, Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f);
+            // Place a tile if there is not already a tile there
+            Vector2 mousePos = new Vector2();
+            mousePos.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - 0.5f;
+            mousePos.y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - 0.5f;
+            float distance = Vector2.Distance(mousePos, player.transform.position);
+
+            if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
+                if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] == null)
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, tile, true);
         }
     }
 
