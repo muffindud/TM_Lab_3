@@ -8,9 +8,13 @@ public class Game : MonoBehaviour
     public Sprite dirtTile;
     public Sprite stoneTile;
     public Sprite logTile;
+    public Sprite plankTile;
     public Sprite leafTile;
     public Sprite ironOreTile;
     public Sprite bedrockTile;
+
+    public Sprite stickItem;
+    public Sprite ironIngotItem;
 
     public Sprite pickaxeToolIron;
     public Sprite pickaxeToolStone;
@@ -37,6 +41,7 @@ public class Game : MonoBehaviour
     public PlayerController player;
     public InventoryManager inventoryManager;
     public ToolManager toolManager;
+    public CraftingManager craftingManager;
 
     private const float treeProbability = 0.1f;
     private const float ironOreProbability = 0.05f;

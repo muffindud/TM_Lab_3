@@ -651,12 +651,15 @@ MonoBehaviour:
   dirtTile: {fileID: 21300000, guid: b5ad5d8c2cf958b4cbce3c40236b3b77, type: 3}
   stoneTile: {fileID: 21300000, guid: 496b64421d89dff4ea0c47cd9cdf60f5, type: 3}
   logTile: {fileID: 21300000, guid: dcefe2bcca7cbcd4ebc123a483782380, type: 3}
+  plankTile: {fileID: 21300000, guid: 99bdeed3aec4509448f499188aea247d, type: 3}
   leafTile: {fileID: 21300000, guid: 6e61aa8c92dbf3b40a9eda5050baa939, type: 3}
   ironOreTile: {fileID: 21300000, guid: 0a3082814691741428aac68c2b183815, type: 3}
   bedrockTile: {fileID: 21300000, guid: 2c6931bdf7e73684a88923de745d2a8c, type: 3}
-  pickaxeToolIron: {fileID: 0}
-  pickaxeToolStone: {fileID: 0}
-  pickaxeToolWood: {fileID: 0}
+  stickItem: {fileID: 21300000, guid: c4b1c55afdfe11f478c629066eff3c29, type: 3}
+  ironIngotItem: {fileID: 21300000, guid: ebdd6dbd469bb3d448c807f8b9989bcc, type: 3}
+  pickaxeToolIron: {fileID: 21300000, guid: 2d533d04da5bae04b81d1ccc8d973a8a, type: 3}
+  pickaxeToolStone: {fileID: 21300000, guid: f55d8626a0a9e9443ae5c75d47c96a6d, type: 3}
+  pickaxeToolWood: {fileID: 21300000, guid: a81271a724bbec449bde5f6671397dff, type: 3}
   axeTool: {fileID: 21300000, guid: fe734a6fbd856354ea54cff00a324dab, type: 3}
   shovelTool: {fileID: 21300000, guid: e23f7f2669a3c3e4fa2375a9df21e818, type: 3}
   swordTool: {fileID: 21300000, guid: 09e26fe1666fe6d4b8ad9b241a3227bb, type: 3}
@@ -6328,6 +6331,7 @@ MonoBehaviour:
   player: {fileID: 1515876073}
   inventoryManager: {fileID: 1566627716}
   toolManager: {fileID: 187250588}
+  craftingManager: {fileID: 1612013802}
 --- !u!1 &1229899266
 GameObject:
   m_ObjectHideFlags: 0
@@ -6726,6 +6730,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1612013800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612013801}
+  - component: {fileID: 1612013802}
+  m_Layer: 0
+  m_Name: Crafting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612013801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612013800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656502063}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612013802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612013800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100934fd29eb1194f8606a721b2d40b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipiesAmount: 9
+  isCraftingMenuOpen: 0
+  game: {fileID: 1018825762}
+  inventoryManager: {fileID: 1566627716}
+  recipies:
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  - ingredients: []
+    ingredientAmounts: 
+    result: {fileID: 0}
+    resultAmount: 0
+  availableRecipies: []
 --- !u!1 &1626041282
 GameObject:
   m_ObjectHideFlags: 0
@@ -6895,6 +6985,7 @@ Transform:
   - {fileID: 2040083506}
   - {fileID: 1566627715}
   - {fileID: 187250587}
+  - {fileID: 1612013801}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
