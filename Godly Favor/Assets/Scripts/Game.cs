@@ -49,12 +49,13 @@ public class Game : MonoBehaviour
         GenerateWorld();
         GenerateBackgroundWorld();
         GenerateWorldBorder();
+        InstantiateTools();
     }
 
     private void Update()
     {
         PlaceTileOnClick(stoneTile);
-        RemoveTileOnClick();
+        RemoveTileOnClick(toolManager.GetActiveTool()); // TODO
         SetInventorySlot();
         SetToolSlot();
         // OnHoverTint();
@@ -107,47 +108,47 @@ public class Game : MonoBehaviour
         if (background)
         {
             if (tiles[FtoI(x), FtoI(y), 1] == null)
-                tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), logTile, true);
+                tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), logTile, inventoryManager, true);
             if (tiles[FtoI(x), FtoI(y + 1), 1] == null)
-                tiles[FtoI(x), FtoI(y + 1), 1] = new Tile(new Vector2(x, y + 1), logTile, true);
+                tiles[FtoI(x), FtoI(y + 1), 1] = new Tile(new Vector2(x, y + 1), logTile, inventoryManager, true);
             if (tiles[FtoI(x), FtoI(y + 2), 1] == null)
-                tiles[FtoI(x), FtoI(y + 2), 1] = new Tile(new Vector2(x, y + 2), logTile, true);
+                tiles[FtoI(x), FtoI(y + 2), 1] = new Tile(new Vector2(x, y + 2), logTile, inventoryManager, true);
             if (tiles[FtoI(x - 1), FtoI(y + 3), 1] == null)
-                tiles[FtoI(x - 1), FtoI(y + 3), 1] = new Tile(new Vector2(x - 1, y + 3), leafTile, true);
+                tiles[FtoI(x - 1), FtoI(y + 3), 1] = new Tile(new Vector2(x - 1, y + 3), leafTile, inventoryManager, true);
             if (tiles[FtoI(x), FtoI(y + 3), 1] == null)
-                tiles[FtoI(x), FtoI(y + 3), 1] = new Tile(new Vector2(x, y + 3), leafTile, true);
+                tiles[FtoI(x), FtoI(y + 3), 1] = new Tile(new Vector2(x, y + 3), leafTile, inventoryManager, true);
             if (tiles[FtoI(x + 1), FtoI(y + 3), 1] == null)
-                tiles[FtoI(x + 1), FtoI(y + 3), 1] = new Tile(new Vector2(x + 1, y + 3), leafTile, true);
+                tiles[FtoI(x + 1), FtoI(y + 3), 1] = new Tile(new Vector2(x + 1, y + 3), leafTile, inventoryManager, true);
             if (tiles[FtoI(x - 1), FtoI(y + 4), 1] == null)
-                tiles[FtoI(x - 1), FtoI(y + 4), 1] = new Tile(new Vector2(x - 1, y + 4), leafTile, true);
+                tiles[FtoI(x - 1), FtoI(y + 4), 1] = new Tile(new Vector2(x - 1, y + 4), leafTile, inventoryManager, true);
             if (tiles[FtoI(x), FtoI(y + 4), 1] == null)
-                tiles[FtoI(x), FtoI(y + 4), 1] = new Tile(new Vector2(x, y + 4), leafTile, true);
+                tiles[FtoI(x), FtoI(y + 4), 1] = new Tile(new Vector2(x, y + 4), leafTile, inventoryManager, true);
             if (tiles[FtoI(x + 1), FtoI(y + 4), 1] == null)
-                tiles[FtoI(x + 1), FtoI(y + 4), 1] = new Tile(new Vector2(x + 1, y + 4), leafTile, true);
+                tiles[FtoI(x + 1), FtoI(y + 4), 1] = new Tile(new Vector2(x + 1, y + 4), leafTile, inventoryManager, true);
             if (tiles[FtoI(x), FtoI(y + 5), 1] == null)
-                tiles[FtoI(x), FtoI(y + 5), 1] = new Tile(new Vector2(x, y + 5), leafTile, true);
+                tiles[FtoI(x), FtoI(y + 5), 1] = new Tile(new Vector2(x, y + 5), leafTile, inventoryManager, true);
         }
         else{
             if (tiles[FtoI(x), FtoI(y), 0] == null)
-                tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), logTile);
+                tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), logTile, inventoryManager);
             if (tiles[FtoI(x), FtoI(y + 1), 0] == null)
-                tiles[FtoI(x), FtoI(y + 1), 0] = new Tile(new Vector2(x, y + 1), logTile);
+                tiles[FtoI(x), FtoI(y + 1), 0] = new Tile(new Vector2(x, y + 1), logTile, inventoryManager);
             if (tiles[FtoI(x), FtoI(y + 2), 0] == null)
-                tiles[FtoI(x), FtoI(y + 2), 0] = new Tile(new Vector2(x, y + 2), logTile);
+                tiles[FtoI(x), FtoI(y + 2), 0] = new Tile(new Vector2(x, y + 2), logTile, inventoryManager);
             if (tiles[FtoI(x - 1), FtoI(y + 3), 0] == null)
-                tiles[FtoI(x - 1), FtoI(y + 3), 0] = new Tile(new Vector2(x - 1, y + 3), leafTile);
+                tiles[FtoI(x - 1), FtoI(y + 3), 0] = new Tile(new Vector2(x - 1, y + 3), leafTile, inventoryManager);
             if (tiles[FtoI(x), FtoI(y + 3), 0] == null)
-                tiles[FtoI(x), FtoI(y + 3), 0] = new Tile(new Vector2(x, y + 3), leafTile);
+                tiles[FtoI(x), FtoI(y + 3), 0] = new Tile(new Vector2(x, y + 3), leafTile, inventoryManager);
             if (tiles[FtoI(x + 1), FtoI(y + 3), 0] == null)
-                tiles[FtoI(x + 1), FtoI(y + 3), 0] = new Tile(new Vector2(x + 1, y + 3), leafTile);
+                tiles[FtoI(x + 1), FtoI(y + 3), 0] = new Tile(new Vector2(x + 1, y + 3), leafTile, inventoryManager);
             if (tiles[FtoI(x - 1), FtoI(y + 4), 0] == null)
-                tiles[FtoI(x - 1), FtoI(y + 4), 0] = new Tile(new Vector2(x - 1, y + 4), leafTile);
+                tiles[FtoI(x - 1), FtoI(y + 4), 0] = new Tile(new Vector2(x - 1, y + 4), leafTile, inventoryManager);
             if (tiles[FtoI(x), FtoI(y + 4), 0] == null)
-                tiles[FtoI(x), FtoI(y + 4), 0] = new Tile(new Vector2(x, y + 4), leafTile);
+                tiles[FtoI(x), FtoI(y + 4), 0] = new Tile(new Vector2(x, y + 4), leafTile, inventoryManager);
             if (tiles[FtoI(x + 1), FtoI(y + 4), 0] == null)
-                tiles[FtoI(x + 1), FtoI(y + 4), 0] = new Tile(new Vector2(x + 1, y + 4), leafTile);
+                tiles[FtoI(x + 1), FtoI(y + 4), 0] = new Tile(new Vector2(x + 1, y + 4), leafTile, inventoryManager);
             if (tiles[FtoI(x), FtoI(y + 5), 0] == null)
-                tiles[FtoI(x), FtoI(y + 5), 0] = new Tile(new Vector2(x, y + 5), leafTile);
+                tiles[FtoI(x), FtoI(y + 5), 0] = new Tile(new Vector2(x, y + 5), leafTile, inventoryManager);
         }
     } 
 
@@ -165,20 +166,20 @@ public class Game : MonoBehaviour
                     {
                         if (Random.Range(0f, 1f) < ironOreProbability)
                         {
-                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), ironOreTile);
+                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), ironOreTile, inventoryManager);
                         }
                         else
                         {    
-                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), stoneTile);
+                            tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), stoneTile, inventoryManager);
                         }
                     }
                     else if (y < height - grassLayer)
                     {
-                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), dirtTile);
+                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), dirtTile, inventoryManager);
                     }
                     else
                     {
-                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), grassTile);
+                        tiles[FtoI(x), FtoI(y), 0] = new Tile(new Vector2(x, y), grassTile, inventoryManager);
 
                         if (Random.Range(0f, 1f) < treeProbability && x > 1 && x < Globals.worldWidth - 1 && tiles[x, y, 0] != null)
                         {
@@ -204,20 +205,20 @@ public class Game : MonoBehaviour
                     {
                         if (Random.Range(0f, 1f) < ironOreProbability)
                         {
-                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), ironOreTile, true);
+                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), ironOreTile, inventoryManager, true);
                         }
                         else
                         {    
-                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), stoneTile, true);
+                            tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), stoneTile, inventoryManager, true);
                         }
                     }
                     else if (y < height - grassLayer)
                     {
-                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), dirtTile, true);
+                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), dirtTile, inventoryManager, true);
                     }
                     else
                     {
-                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), grassTile, true);
+                        tiles[FtoI(x), FtoI(y), 1] = new Tile(new Vector2(x, y), grassTile, inventoryManager, true);
                         if (Random.Range(0f, 1f) < treeProbability && x > 1 && x < Globals.worldWidth - 1 && tiles[x, y, 0] != null)
                         {
                             PlaceTree(x, y + 1, true);
@@ -234,23 +235,23 @@ public class Game : MonoBehaviour
 
         for (int x = 0; x < Globals.worldWidth; x++)
         {
-            worldBorder[i] = new Tile(new Vector2(x, -1), bedrockTile);
-            worldBorder[i + 1] = new Tile(new Vector2(x, Globals.worldHeight), bedrockTile);
+            worldBorder[i] = new Tile(new Vector2(x, -1), bedrockTile, inventoryManager);
+            worldBorder[i + 1] = new Tile(new Vector2(x, Globals.worldHeight), bedrockTile, inventoryManager);
             i += 2;
         }
         for (int x = 0; x < Globals.worldHeight; x++)
         {
-            worldBorder[i] = new Tile(new Vector2(-1, x), bedrockTile);
-            worldBorder[i + 1] = new Tile(new Vector2(Globals.worldWidth, x), bedrockTile);
+            worldBorder[i] = new Tile(new Vector2(-1, x), bedrockTile, inventoryManager);
+            worldBorder[i + 1] = new Tile(new Vector2(Globals.worldWidth, x), bedrockTile, inventoryManager);
             i += 2;
         }
-        worldBorder[i] = new Tile(new Vector2(-1, -1), bedrockTile);
-        worldBorder[i + 1] = new Tile(new Vector2(Globals.worldWidth, -1), bedrockTile);
-        worldBorder[i + 2] = new Tile(new Vector2(-1, Globals.worldHeight), bedrockTile);
-        worldBorder[i + 3] = new Tile(new Vector2(Globals.worldWidth, Globals.worldHeight), bedrockTile);
+        worldBorder[i] = new Tile(new Vector2(-1, -1), bedrockTile, inventoryManager);
+        worldBorder[i + 1] = new Tile(new Vector2(Globals.worldWidth, -1), bedrockTile, inventoryManager);
+        worldBorder[i + 2] = new Tile(new Vector2(-1, Globals.worldHeight), bedrockTile, inventoryManager);
+        worldBorder[i + 3] = new Tile(new Vector2(Globals.worldWidth, Globals.worldHeight), bedrockTile, inventoryManager);
     }
 
-    public void RemoveTileOnClick()
+    public void RemoveTileOnClick(Tool tool)
     {
         // If left shift is held, remove background tile
         bool leftShift = Input.GetKey(KeyCode.LeftShift); 
@@ -266,7 +267,7 @@ public class Game : MonoBehaviour
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] != null)
                 {
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile();
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile(tool);
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = null;
                 }
         }
@@ -282,7 +283,7 @@ public class Game : MonoBehaviour
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] != null)
                 {
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile();
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile(tool);
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = null;
                 }
         }
@@ -291,7 +292,7 @@ public class Game : MonoBehaviour
     public void PlaceTileOnClick(Sprite tile)
     {
         // If left shift is held, place background tile
-        bool leftShift = Input.GetKey(KeyCode.LeftShift); 
+        bool leftShift = Input.GetKey(KeyCode.LeftShift);
 
         if (Input.GetMouseButton(1) && !leftShift)
         {
@@ -304,7 +305,8 @@ public class Game : MonoBehaviour
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] == null)
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = new Tile(mousePos, tile);
+                    if (inventoryManager.Place())
+                        tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = new Tile(mousePos, tile, inventoryManager);
         }
         else if (Input.GetMouseButton(1) && leftShift)
         {
@@ -318,7 +320,8 @@ public class Game : MonoBehaviour
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] == null)
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, tile, true);
+                    if (inventoryManager.Place())
+                        tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, tile, inventoryManager, true);
         }
     }
 

@@ -35,6 +35,21 @@ public class ToolManager : MonoBehaviour
         GameObject.Find("pickaxe_item_wood").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("shovel_item").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("axe_item").GetComponent<SpriteRenderer>().enabled = false;
+
+        DebugMode();
+    }
+
+    public void DebugMode()
+    {
+        GameObject.Find("sword_item").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("pickaxe_item_iron").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("shovel_item").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("axe_item").GetComponent<SpriteRenderer>().enabled = true;
+        hasSword = true;
+        hasPickaxeIron = true;
+        hasShovel = true;
+        hasAxe = true;
+
     }
     
     public void UpdateSlot()
@@ -50,6 +65,38 @@ public class ToolManager : MonoBehaviour
     {
         selectedSlot = slot;
         UpdateSlot();
+    }
+
+    public Tool GetActiveTool()
+    {
+        if (selectedSlot == 0 && hasSword)
+        {
+            return game.tools[6];
+        }
+        else if (selectedSlot == 1 && hasPickaxeIron)
+        {
+            return game.tools[1];
+        }
+        else if (selectedSlot == 1 && hasPickaxeStone)
+        {
+            return game.tools[2];
+        }
+        else if (selectedSlot == 1 && hasPickaxeWood)
+        {
+            return game.tools[3];
+        }
+        else if (selectedSlot == 2 && hasShovel)
+        {
+            return game.tools[4];
+        }
+        else if (selectedSlot == 3 && hasAxe)
+        {
+            return game.tools[5];
+        }
+        else
+        {
+            return game.tools[0];
+        }
     }
 
     public void AquireSword()

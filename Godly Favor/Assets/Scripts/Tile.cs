@@ -13,13 +13,16 @@ public class Tile
     public bool brakable = true;
     public bool background;
 
-    public Tile(Vector2 position, Sprite sprite, bool background=false)
+    public InventoryManager inventoryManager;
+
+    public Tile(Vector2 position, Sprite sprite, InventoryManager im, bool background=false)
     {
         position.x = Mathf.RoundToInt(position.x);
         position.y = Mathf.RoundToInt(position.y);
         this.position = position;
         this.sprite = sprite;
         this.background = background;
+        this.inventoryManager = im;
 
         switch (sprite.name)
         {
@@ -91,18 +94,26 @@ public class Tile
         newTile.transform.position = new Vector2(Mathf.RoundToInt(position.x) + 0.5f, Mathf.RoundToInt(position.y) + 0.5f);
     }
 
-    public void RemoveTile()
+    public void RemoveTile(Tool tool)
     {
         if (background)
         {
             GameObject tile = GameObject.Find(sprite.name + " " + position.x + " " + position.y + " 1");
             if (tile.name != "bedrock_block " + position.x + " " + position.y + " 1")
+                if (tool.name == this.tool || this.handBreakable)
+                {
+                    inventoryManager.PickUp(sprite);
+                }
                 GameObject.Destroy(tile);
         }
         else
         {
             GameObject tile = GameObject.Find(sprite.name + " " + position.x + " " + position.y + " 0");
             if (tile.name != "bedrock_block " + position.x + " " + position.y + " 0")
+                if (tool.name == this.tool || this.handBreakable)
+                {
+                    inventoryManager.PickUp(sprite);
+                }
                 GameObject.Destroy(tile);
         }
     }
