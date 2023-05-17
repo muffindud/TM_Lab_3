@@ -54,8 +54,8 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-        PlaceTileOnClick(stoneTile);
-        RemoveTileOnClick(toolManager.GetActiveTool()); // TODO
+        PlaceTileOnClick();
+        RemoveTileOnClick();
         SetInventorySlot();
         SetToolSlot();
         // OnHoverTint();
@@ -251,7 +251,7 @@ public class Game : MonoBehaviour
         worldBorder[i + 3] = new Tile(new Vector2(Globals.worldWidth, Globals.worldHeight), bedrockTile, inventoryManager);
     }
 
-    public void RemoveTileOnClick(Tool tool)
+    public void RemoveTileOnClick()
     {
         // If left shift is held, remove background tile
         bool leftShift = Input.GetKey(KeyCode.LeftShift); 
@@ -267,7 +267,7 @@ public class Game : MonoBehaviour
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] != null)
                 {
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile(tool);
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile(toolManager.GetActiveTool());
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = null;
                 }
         }
@@ -283,13 +283,13 @@ public class Game : MonoBehaviour
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] != null)
                 {
-                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile(tool);
+                    tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1].RemoveTile(toolManager.GetActiveTool());
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = null;
                 }
         }
     }
 
-    public void PlaceTileOnClick(Sprite tile)
+    public void PlaceTileOnClick()
     {
         // If left shift is held, place background tile
         bool leftShift = Input.GetKey(KeyCode.LeftShift);
@@ -305,8 +305,8 @@ public class Game : MonoBehaviour
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] == null)
-                    if (inventoryManager.Place())
-                        tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = new Tile(mousePos, tile, inventoryManager);
+                    inventoryManager.Place(mousePos.x, mousePos.y, 0);
+                        // tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = new Tile(mousePos, inventoryManager.slotItems[inventoryManager.selectedSlot], inventoryManager);
         }
         else if (Input.GetMouseButton(1) && leftShift)
         {
@@ -320,8 +320,8 @@ public class Game : MonoBehaviour
 
             if (mousePos.x + 0.5f >= 0 && mousePos.x + 0.5f < Globals.worldWidth && mousePos.y + 0.5f >= 0 && mousePos.y + 0.5f < Globals.worldHeight && distance <= player.interactionDistance && distance > 1f && isBackground)
                 if (tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] == null)
-                    if (inventoryManager.Place())
-                        tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, tile, inventoryManager, true);
+                    inventoryManager.Place(mousePos.x, mousePos.y, 1, true);
+                        // tiles[FtoI(mousePos.x), FtoI(mousePos.y), 1] = new Tile(mousePos, inventoryManager.slotItems[inventoryManager.selectedSlot], inventoryManager, true);
         }
     }
 

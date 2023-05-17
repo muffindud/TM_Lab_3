@@ -124,21 +124,17 @@ public class InventoryManager : MonoBehaviour
         return ind;
     }
 
-    public bool Place()
+    public void Place(float x, float y, int plane, bool background = false)
     {
         if (slotItems[selectedSlot] != null)
         {
+            game.tiles[game.FtoI(x), game.FtoI(y), plane] = new Tile(new Vector2(x, y), slotItems[selectedSlot], game.inventoryManager, background);
             slotAmounts[selectedSlot]--;
             if (slotAmounts[selectedSlot] == 0)
             {
-                slotItems[selectedSlot] = null;
                 Destroy(GameObject.Find(slotItems[selectedSlot].name + "_inventory"));
+                slotItems[selectedSlot] = null;
             }
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }
