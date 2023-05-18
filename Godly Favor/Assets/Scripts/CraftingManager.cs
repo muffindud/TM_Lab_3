@@ -29,12 +29,12 @@ public class CraftingManager : MonoBehaviour
     private float startX = -1.875f;
     private float startY = 1.25f;
 
-    private float absoluteMiddleStartX = 60.625f;
-    private float absoluteMiddleStartY = 55.25f;
-    private float absoluteTRStartX = 60.25f;
-    private float absoluteTRStartY = 55.75f;
-    private float absoluteBLStartX = 61.125f;
-    private float absoluteBLStartY = 54.75f;
+    // private float absoluteMiddleStartX = 60.625f;
+    // private float absoluteMiddleStartY = 55.25f;
+    // private float absoluteTRStartX = 60.25f;
+    // private float absoluteTRStartY = 55.75f;
+    // private float absoluteBLStartX = 61.125f;
+    // private float absoluteBLStartY = 54.75f;
 
     void Start()
     {
@@ -107,7 +107,12 @@ public class CraftingManager : MonoBehaviour
             else
                 CloseCraftingMenu();
         }
-        Craft();
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log("Clicked");
+        Debug.Log(gameObject.name);
     }
 
     public void CheckRecipie(Recipie recipie)
@@ -152,43 +157,75 @@ public class CraftingManager : MonoBehaviour
 
         for (int y = 0; y < 3; y++)
         {
+            if (i >= availableRecipies.Count - 1)
+                break;
             for (int x = 0; x < 4; x++)
             {
+                if (i >= availableRecipies.Count - 1)
+                    break;
                 GameObject craftableItem = new GameObject();
                 craftableItem.transform.parent = interfaceObj.transform;
                 craftableItem.AddComponent<SpriteRenderer>();
                 craftableItem.GetComponent<SpriteRenderer>().sprite = availableRecipies[i].interfaceSprite;
-                craftableItem.GetComponent<SpriteRenderer>().sprite = availableRecipies[i].result;
                 craftableItem.GetComponent<SpriteRenderer>().sortingOrder = 5;
+                craftableItem.AddComponent<BoxCollider2D>();
+                craftableItem.tag = "Crafting";
                 craftableItem.transform.localPosition = new Vector3(startX + (deltaX * x), startY - (deltaY * y), 0);
-                float xcoord = startX + (deltaX * x);
-                float ycoord = startY - (deltaY * y);
-                craftableItem.name = xcoord.ToString() + " " + ycoord.ToString();
+                // craftableItem.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+                craftableItem.name = i.ToString();
                 i++;
-                if (i >= availableRecipies.Count)
-                    break;
             }
-            if (i >= availableRecipies.Count)
-                break;
         }
     }
 
-    public void Craft()
+    public void Craft(string objName)
     {   
-        if (isCraftingMenuOpen && Input.GetMouseButtonDown(0))
+        GameObject obj = GameObject.Find(objName);
+        int index = int.Parse(objName);
+        // Debug.Log("Crafting " + availableRecipies[index].result.name);
+        // Remove the ingredients from the inventory
+        Sprite result = availableRecipies[index].result;
+        for (int i = 0; i < availableRecipies[index].ingredients.Length; i++)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            for (int y = 0; y < 3; y++)
-            {
-                for (int x = 0; x < 4; x++)
-                {
-                    if (mousePos.x > absoluteTRStartX + (deltaX * x) && mousePos.y < absoluteTRStartY - (deltaY * y) && mousePos.x < absoluteBLStartX + (deltaX * x) && mousePos.y > absoluteBLStartY - (deltaY * y))
-                    {
-                        Debug.Log("Clicked on " + x.ToString() + " " + y.ToString()); // YOU STOPPED HERE
-                    }
-                }
-            }
+            if (
+                (!game.toolManager.hasPickaxeWood && !game.toolManager.hasPickaxeStone && !game.toolManager.hasPickaxeIron && result.name == "pickaxe_item_wood") ||
+                (!game.toolManager.hasPickaxeStone && !game.toolManager.hasPickaxeIron && result.name == "pickaxe_item_stone") ||
+                (!game.toolManager.hasPickaxeIron && result.name == "pickaxe_item_iron") ||
+                (!game.toolManager.hasAxe && result.name == "axe_item") ||
+                (!game.toolManager.hasShovel && result.name == "shovel_item") ||
+                (!game.toolManager.hasSword && result.name == "sword_item")
+            )
+                inventoryManager.RemoveItem(availableRecipies[index].ingredients[i], availableRecipies[index].ingredientAmounts[i]);
         }
+        // Add the result to the inventory
+        switch (result.name)
+        {
+            case "pickaxe_item_iron":
+                game.toolManager.AquirePickaxeIron();
+                break;
+            case "pickaxe_item_stone":
+                if (!game.toolManager.hasPickaxeIron)
+                    game.toolManager.AquirePickaxeStone();
+                break;
+            case "pickaxe_item_wood":
+                if (!game.toolManager.hasPickaxeStone && !game.toolManager.hasPickaxeIron)
+                    game.toolManager.AquirePickaxeWood();
+                break;
+            case "axe_item":
+                game.toolManager.AquireAxe();
+                break;
+            case "shovel_item":
+                game.toolManager.AquireShovel();
+                break;
+            case "sword_item":
+                game.toolManager.AquireSword();
+                break;
+            default:
+                inventoryManager.PickUp(result, availableRecipies[index].resultAmount);
+                break;
+        }
+        CloseCraftingMenu();
+        OpenCraftingMenu();
     }
 
     public void CloseCraftingMenu()

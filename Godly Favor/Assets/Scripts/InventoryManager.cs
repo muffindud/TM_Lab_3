@@ -75,13 +75,13 @@ public class InventoryManager : MonoBehaviour
         UpdateSlot();
     }
 
-    public void PickUp(Sprite item)
+    public void PickUp(Sprite item, int ct = 1)
     {
         if (GetItemSlotIndex(item) == -1)
         {
             int itemIndex = GetItemSlotIndex();
             slotItems[itemIndex] = item;
-            slotAmounts[itemIndex]++;
+            slotAmounts[itemIndex] += ct;
 
             GameObject newItem = new GameObject();
             newItem.name = item.name + "_inventory";
@@ -97,7 +97,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            slotAmounts[GetItemSlotIndex(item)]++;
+            slotAmounts[GetItemSlotIndex(item)] += ct;
         }
     }
 
@@ -135,6 +135,17 @@ public class InventoryManager : MonoBehaviour
                 Destroy(GameObject.Find(slotItems[selectedSlot].name + "_inventory"));
                 slotItems[selectedSlot] = null;
             }
+        }
+    }
+
+    public void RemoveItem(Sprite item, int ct = 1)
+    {
+        int itemIndex = GetItemSlotIndex(item);
+        slotAmounts[itemIndex] -= ct;
+        if (slotAmounts[itemIndex] == 0)
+        {
+            Destroy(GameObject.Find(item.name + "_inventory"));
+            slotItems[itemIndex] = null;
         }
     }
 }
