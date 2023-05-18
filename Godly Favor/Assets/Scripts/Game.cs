@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -355,7 +356,7 @@ public class Game : MonoBehaviour
 
     public void GameOver()
     {
-        // TODO: Add a game over screen
+        SceneManager.LoadScene("DeathScreen");
     }
 
     // TODO: Add a tint on mouse hover
