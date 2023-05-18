@@ -7519,6 +7519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1656502062}
   craftingManager: {fileID: 1612013802}
+  player: {fileID: 1515876073}
 --- !u!114 &1928507175
 MonoBehaviour:
   m_ObjectHideFlags: 0

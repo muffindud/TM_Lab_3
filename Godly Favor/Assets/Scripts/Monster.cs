@@ -47,6 +47,8 @@ public class Monster : MonoBehaviour
         idleSprite = monsterController.monsterSpriteStatic;
         walkSprites[0] = monsterController.monsterSpriteWalk1;
         walkSprites[1] = monsterController.monsterSpriteWalk2;
+        this.gameObject.name = "Monster";
+        this.gameObject.tag = "Monster";
         StartCoroutine(DestinationDelay());
         StartCoroutine(DespawnDelay());
     }
@@ -183,6 +185,7 @@ public class Monster : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Knockback();
         if (currentHealth <= 0)
         {
             // TODO: Check if works
@@ -196,5 +199,11 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(60);
         monsterController.monsterCount--;
         Destroy(this.gameObject);
+    }
+
+    public void Knockback()
+    {
+        Vector2 knockbackDirection = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+        rb.AddForce(knockbackDirection * 500f);
     }
 }

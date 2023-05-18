@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
 {
     public Camera mainCamera;
     public CraftingManager craftingManager;
+    public PlayerController player;
 
     void Awake()
     {
@@ -27,6 +28,11 @@ public class InputHandler : MonoBehaviour
         if (hitObj.tag == "Crafting")
         {
             craftingManager.Craft(hitObj.name);
+        }
+        else if (hitObj.tag == "Monster")
+        {
+            if (Vector2.Distance(player.transform.position, hitObj.transform.position) < player.interactionDistance)
+                hitObj.GetComponent<Monster>().TakeDamage(player.game.toolManager.GetActiveTool().damage * player.damageMultiplier);
         }
     }
 }
