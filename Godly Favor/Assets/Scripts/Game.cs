@@ -13,7 +13,6 @@ public class Game : MonoBehaviour
     public Sprite ironOreTile;
     public Sprite bedrockTile;
 
-    public Sprite stickItem;
     public Sprite ironIngotItem;
 
     public Sprite pickaxeToolIron;
@@ -64,6 +63,11 @@ public class Game : MonoBehaviour
         SetInventorySlot();
         SetToolSlot();
         // OnHoverTint();
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     Debug.Log("Mouse position: " + mousePos.x + ", " + mousePos.y);
+        // }
     }
 
     // External use

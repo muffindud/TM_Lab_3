@@ -9,12 +9,14 @@ public class Recipie
     public int[] ingredientAmounts;
     public Sprite result;
     public int resultAmount;
+    public Sprite interfaceSprite;
 
-    public Recipie(Sprite[] ingredients, int[] ingredientAmounts, Sprite result, int resultAmount)
+    public Recipie(Sprite[] ingredients, int[] ingredientAmounts, Sprite result, int resultAmount, Sprite interfaceSprite)
     {
         this.ingredients = ingredients;
         this.ingredientAmounts = ingredientAmounts;
         this.result = result;
         this.resultAmount = resultAmount;
-    }    
+        this.interfaceSprite = interfaceSprite;
+    }
 }

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector2Int mousePos;
 
+    public Game game;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     
@@ -50,7 +52,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // float horizontal = Input.GetAxis("Horizontal");
         float horizontal = Input.GetAxis("Horizontal");
         float veritcal = Input.GetAxisRaw("Vertical");
         float jump = Input.GetAxisRaw("Jump");
@@ -80,5 +81,4 @@ public class PlayerController : MonoBehaviour
             sr.sprite = idleSprite;
         }
     }
-
 }
