@@ -65,8 +65,7 @@ public class Game : MonoBehaviour
         // OnHoverTint();
         // if (Input.GetMouseButtonDown(0))
         // {
-        //     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //     Debug.Log("Mouse position: " + mousePos.x + ", " + mousePos.y);
+        //     SpawnMonster(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         // }
     }
 
