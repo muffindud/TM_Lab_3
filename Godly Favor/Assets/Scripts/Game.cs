@@ -78,13 +78,13 @@ public class Game : MonoBehaviour
 
     public void InstantiateTools()
     {
-        tools[0] = new Tool("hand", null, 1, 1);
-        tools[1] = new Tool("pickaxe", pickaxeToolIron, 3, 5);
-        tools[2] = new Tool("pickaxe", pickaxeToolStone, 2, 3);
+        tools[0] = new Tool("hand", null, 2, 1);
+        tools[1] = new Tool("pickaxe", pickaxeToolIron, 6, 5);
+        tools[2] = new Tool("pickaxe", pickaxeToolStone, 3, 3);
         tools[3] = new Tool("pickaxe", pickaxeToolWood, 2, 2);
-        tools[4] = new Tool("axe", axeTool, 4, 3);
-        tools[5] = new Tool("shovel", shovelTool, 2, 4);
-        tools[6] = new Tool("sword", swordTool, 6, 1);
+        tools[4] = new Tool("axe", axeTool, 8, 3);
+        tools[5] = new Tool("shovel", shovelTool, 5, 4);
+        tools[6] = new Tool("sword", swordTool, 10, 1);
     }
 
     public void GenerateWorldNoise()

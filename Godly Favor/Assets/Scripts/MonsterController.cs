@@ -2,37 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MonsterController : MonoBehaviour
 {
-    public float moveSpeed = 7.5f;
-    public float jumpForce = 13f;
+    public float moveSpeed = 6f;
+    public float jumpForce = 10f;
     public int animationSpeed = 3;
-    public float interactionDistance = 4f;
-
-    public float maxHealth = 200f;
-    public float currentHealth = 200f;
+    public float interactionDistance = 2f;
     
-    public float damageMultiplier = 1f;
-    public float defenseMultiplier = 1f;
-
     public bool isGrounded;
     public bool isMoving;
 
     public Sprite idleSprite;
     public Sprite[] walkSprites = new Sprite[2];
 
-    public Vector2Int mousePos;
-
     public Game game;
-
+    public PlayerController player;
+    
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    
+    private CapsuleCollider2D cc;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        
     }
 
     void Update()
@@ -58,29 +52,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float veritcal = Input.GetAxisRaw("Vertical");
-        float jump = Input.GetAxisRaw("Jump");
-
-        Vector2 movement = new Vector2(horizontal * moveSpeed, rb.velocity.y);
-
-        if ((veritcal > 0.1f || jump > 0.1f) && isGrounded == true)
-        {
-            movement.y = jumpForce;
-        }
-
-        rb.velocity = movement;
-        
-        sr.flipX = horizontal < 0;
-        isMoving = movement.x != 0;
+        // TODO
     }
 
-    // Public functions
     public void ChangeSprite()
     {
         if (isMoving)
         {
-            sr.sprite = walkSprites[0 + (int)(Time.time * animationSpeed) % 2];
+            sr.sprite = walkSprites[(int)(Time.time * animationSpeed) % 2];
         }
         else
         {
