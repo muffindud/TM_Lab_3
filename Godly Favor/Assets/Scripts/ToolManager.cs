@@ -36,7 +36,7 @@ public class ToolManager : MonoBehaviour
         GameObject.Find("shovel_item").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("axe_item").GetComponent<SpriteRenderer>().enabled = false;
 
-        DebugMode();
+        // DebugMode();
     }
 
     public void DebugMode()

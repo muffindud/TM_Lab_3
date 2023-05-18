@@ -8,4 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Bellum.unity
+    guid: dfbf88288a176104ca9041b0209626e2
+  - enabled: 1
+    path: Assets/Scenes/Consilium.unity
+    guid: 71a422fff9904ae45ab78745f1a4b31c
+  - enabled: 1
+    path: Assets/Scenes/Praesidium.unity
+    guid: 4e61051003567c441a80cde9f168f1b8
+  - enabled: 1
+    path: Assets/Scenes/Eventum.unity
+    guid: 535051b2afc43b342a9da5ad92f1460a
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: 3d2dc197749e4694eb6581fd959e99c2
+  - enabled: 1
+    path: Assets/Scenes/World.unity
+    guid: d0d3d9d07b2b54044b737f66eafc2632
   m_configObjects: {}

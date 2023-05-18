@@ -195,7 +195,11 @@ public class CraftingManager : MonoBehaviour
                 (!game.toolManager.hasShovel && result.name == "shovel_item") ||
                 (!game.toolManager.hasSword && result.name == "sword_item")
             )
+            {
                 inventoryManager.RemoveItem(availableRecipies[index].ingredients[i], availableRecipies[index].ingredientAmounts[i]);
+                game.IncreaseEventumScore(-0.05f);
+                game.IncreaseConsiliumScore(0.05f);
+            }
         }
         // Add the result to the inventory
         switch (result.name)

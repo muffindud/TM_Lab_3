@@ -186,9 +186,11 @@ public class Monster : MonoBehaviour
     {
         currentHealth -= damage;
         Knockback();
+        game.IncreaseBellumScore();
         if (currentHealth <= 0)
         {
             // TODO: Check if works
+            game.IncreaseBellumScore();
             monsterController.monsterCount--;
             Destroy(this.gameObject);
         }

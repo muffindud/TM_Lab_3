@@ -46,6 +46,12 @@ public class Game : MonoBehaviour
     private const float treeProbability = 0.1f;
     private const float ironOreProbability = 0.05f;
 
+    public float bellumScore = 0f;
+    public float praesidiumScore = 0f;
+    public float eventumScore = 0f;
+    public float consiliumScore = 0f;
+    public float maxSore = 10f;
+
     // Internal use
     private void Start()
     {   
@@ -278,6 +284,7 @@ public class Game : MonoBehaviour
                 {
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0].RemoveTile(toolManager.GetActiveTool());
                     tiles[FtoI(mousePos.x), FtoI(mousePos.y), 0] = null;
+                    IncreaseEventumScore(0.05f);
                 }
         }
         else if(Input.GetMouseButton(0) && leftShift)
@@ -357,6 +364,63 @@ public class Game : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene("DeathScreen");
+    }
+
+    public void IncreaseBellumScore(float s = 0.5f)
+    {
+        bellumScore += s;
+        player.damageMultiplier += s / 10;
+        if (bellumScore >= maxSore)
+            BellumWin();
+    }
+
+    public void IncreasePraesidiumScore(float s = 0.5f)
+    {
+        praesidiumScore += s;
+        player.defenseMultiplier += s / 10;
+        if (praesidiumScore >= maxSore)
+            PraesidiumWin();
+    }
+
+    public void IncreaseEventumScore(float s = 0.5f)
+    {
+        eventumScore += s;
+        player.moveSpeed += s / 10;
+        if (eventumScore >= maxSore)
+            EventumWin();
+    }
+
+    public void IncreaseConsiliumScore(float s = 0.5f)
+    {
+        consiliumScore += s;
+        player.currentHealth += s * 10;
+        player.maxHealth += s * 10;
+        if (consiliumScore >= maxSore)
+            ConsiliumWin();
+    }
+
+    public void BellumWin()
+    {
+        // TODO
+        SceneManager.LoadScene("Bellum");
+    }
+
+    public void PraesidiumWin()
+    {
+        // TODO
+        SceneManager.LoadScene("Prasidium");
+    }
+
+    public void EventumWin()
+    {
+        // TODO
+        SceneManager.LoadScene("Eventum");
+    }
+
+    public void ConsiliumWin()
+    {
+        // TODO
+        SceneManager.LoadScene("Consilium");
     }
 
     // TODO: Add a tint on mouse hover

@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage * defenseMultiplier;
+        game.IncreaseBellumScore(-0.25f);
+        game.IncreasePraesidiumScore();
+        game.IncreaseConsiliumScore(-0.25f);
         if (currentHealth <= 0)
         {
             game.GameOver();
