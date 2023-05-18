@@ -353,6 +353,11 @@ public class Game : MonoBehaviour
             toolManager.SetToolSlot(3);
     }
 
+    public void GameOver()
+    {
+        // TODO: Add a game over screen
+    }
+
     // TODO: Add a tint on mouse hover
     // public void OnHoverTint()
     // {

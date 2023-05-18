@@ -87,4 +87,13 @@ public class PlayerController : MonoBehaviour
             sr.sprite = idleSprite;
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage * defenseMultiplier;
+        if (currentHealth <= 0)
+        {
+            game.GameOver();
+        }
+    }
 }
