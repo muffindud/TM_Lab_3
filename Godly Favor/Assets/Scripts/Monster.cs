@@ -18,6 +18,7 @@ public class Monster : MonoBehaviour
     public float detectionDistance = 10f;
     public float attackDistance = 1.2f;
     public int attackDelay = 1;
+    public int newDestinationDelay = 5;
     public bool isAttacking = false;
     public bool isTargetingPlayer = false;
 
@@ -29,6 +30,7 @@ public class Monster : MonoBehaviour
     public Sprite[] walkSprites = new Sprite[2];
     public PlayerController player;
     public Game game;
+    public MonsterController monsterController;
 
     // [HideInInspector]
     public Rigidbody2D rb;
@@ -39,6 +41,14 @@ public class Monster : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        game = GameObject.Find("GameWorld").GetComponent<Game>();
+        monsterController = GameObject.Find("MonsterController").GetComponent<MonsterController>();
+        idleSprite = monsterController.monsterSpriteStatic;
+        walkSprites[0] = monsterController.monsterSpriteWalk1;
+        walkSprites[1] = monsterController.monsterSpriteWalk2;
+        StartCoroutine(DestinationDelay());
+        StartCoroutine(DespawnDelay());
     }
 
     void Update()
@@ -70,12 +80,12 @@ public class Monster : MonoBehaviour
         {
             if (hasReachedDestination)
             {
-                destinationDelta = new Vector2(Random.Range(-7f, 7f), Random.Range(0f, 0f));
+                GenerateDestinationDelta();
                 destination = new Vector2(transform.position.x + destinationDelta.x, transform.position.y + destinationDelta.y);
                 hasReachedDestination = false;
                 isMoving = true;
             }
-            else if (Vector2.Distance(transform.position, destination) < 0.5f || Vector2.Distance(transform.position, destination) > 14f)
+            else if (Vector2.Distance(transform.position, destination) < 0.5f || Vector2.Distance(transform.position, destination) > 30f)
             {
                 isMoving = false;
                 destination = transform.position;
@@ -84,7 +94,7 @@ public class Monster : MonoBehaviour
             else 
             {
                 // This is where moving happens
-                // TODO: Add jumping
+                
                 transform.position = Vector2.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
             }
 
@@ -109,6 +119,22 @@ public class Monster : MonoBehaviour
 
         ChangeSprite();
         Attack();
+    }
+
+    public void GenerateDestinationDelta()
+    {
+        // Radomly generate a destination delta vector to valid destination
+        float deltaX = Random.Range(7f, 20f) * (Random.Range(0, 2) * 2 - 1);
+        float deltaY = 0f;
+        
+        destinationDelta = new Vector2(deltaX, deltaY);
+    }
+
+    IEnumerator DestinationDelay()
+    {
+        yield return new WaitForSeconds(newDestinationDelay);
+        hasReachedDestination = true;
+        StartCoroutine(DestinationDelay());
     }
 
     IEnumerator IdleDelay()
@@ -160,8 +186,15 @@ public class Monster : MonoBehaviour
         if (currentHealth <= 0)
         {
             // TODO: Check if works
-            Destroy(this);
+            monsterController.monsterCount--;
+            Destroy(this.gameObject);
         }
     }
 
+    IEnumerator DespawnDelay()
+    {
+        yield return new WaitForSeconds(60);
+        monsterController.monsterCount--;
+        Destroy(this.gameObject);
+    }
 }
