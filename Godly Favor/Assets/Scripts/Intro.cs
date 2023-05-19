@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeathScreen : MonoBehaviour
+public class Intro : MonoBehaviour
 {
     // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("Introduction");
+            SceneManager.LoadScene("World");
         }
     }
 }
